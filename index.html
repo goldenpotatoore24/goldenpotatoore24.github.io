@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<html>
+
+
+<style>
+    img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    </style>
+
+
+    <body>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function () {
+            var images = ["https://i.imgur.com/PTt3JJd.jpg", "https://i.imgur.com/Pk0oin4.jpg", "https://i.imgur.com/wfq1Gy3.jpg", "https://i.imgur.com/SrsyTZc.jpg", "https://i.imgur.com/SrsyTZc.jpg", "https://i.imgur.com/48eGyWh.jpg", "https://i.imgur.com/wdat1ex.jpg", "https://i.imgur.com/PzIPsVv.jpg"] 
+            var date = new Date();
+        var randomization = date.getDate() + date.getMonth() + date.getFullYear() + date.getHours() + Math.floor(date.getMinutes() / 5);
+            var path_img = images[randomization % images.length];
+            $('#img1')[0].src = path_img;
+});
+
+
+
+function ScaleImage(Img){
+
+var Size= $(window).height() * $(window).width() / 3, nW=Img.naturalWidth, nH=Img.naturalHeight, W=nW, H=nH, Scale=1;
+
+if((W*H)>Size){
+
+ while((W*H)>Size){Scale-=0.01; W=nW*Scale; H=nH*Scale;}
+
+} else {
+
+ while((W*H)<Size){Scale+=0.01; W=nW*Scale; H=nH*Scale;}
+
+} 
+
+Img.width=Math.round(W); Img.height=Math.round(H);
+
+}
+</script>
+<img id="img1" class="img-thumbnail" onload="ScaleImage(this);" class="center"/>
+    </body>
+    </html>
